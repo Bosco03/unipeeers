@@ -1,62 +1,32 @@
-import { customStyles } from "@/components/custom-styles";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { introStyles } from "@/styles/intro.styles"
+import { ImageBackground, Text, TouchableOpacity, View } from "react-native"
 
 export default function index() {
   return (
-    <View style={customStyles.main}>
-      <View>
-          <Text style={{
-            fontWeight: "bold",
-            color: "grey",
-            fontSize:24
-            }}> React Native Training</Text>
-      </View>
+    <View style={introStyles.cover}>
+      <ImageBackground
+       style={introStyles.bg}
+       source ={require("../assets/images/intro_bg.jpg")}>
+        <View style={introStyles.layer}>
+          <View style={introStyles.header}>
+              <Text style={introStyles.title}>Unipeers</Text>
+          </View>
 
-      <View style={{
-        width: "100%",
-        minHeight: 160,
-        backgroundColor: "black"
-      }}>
-        <Text style={styles.text}>Course Banner</Text>
-        <Image
-        width={140}
-        height={280}
-        style={{
-          width:"100%"
-        }}
-        source={{uri: "https://www.earlycode.net/_next/image?url=https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Feaco-89ea2.appspot.com%2Fo%2Fcourses%252FKp5SLBxj9jDKtlE7DLBQ%252Fandroid_and_ios_development.png%3Falt%3Dmedia%26token%3D23d28bee-9d9f-4935-8665-b3e9e8257c32&w=828&q=75"}}
-        alt="course photo"/>
-      </View>
+          <View style={introStyles.boby}>
+              <Text style={introStyles.bobyText}>The school app for socialisong. 
+                connect with friends, create your own
+                event, and find other amazing events from
+                studends. </Text>
+          </View>
 
-      <View style={{
-        width: "100%",
-        minHeight: 160,
-        backgroundColor: "orange",
-        marginVertical: 16,
-        borderWidth: 2,
-        borderColor: "gray"
-      }}>
-        <Text style={styles.text}> About Me</Text>
-      </View>
+          <View>
+            <TouchableOpacity style={introStyles.btn}>
+              <Text style={introStyles.btnText}> Get started</Text>
+            </TouchableOpacity>
+          </View>
 
-
-      <View style={{
-        width: "100%",
-        minHeight: 160,
-        backgroundColor: "red"
-      }}>
-        <Text style={styles.text}> About Early Code Institute</Text>
-        <Image
-        source={require("../assets/images/react-logo.png")}
-        alt="logo"/>
-      </View>
+        </View>
+      </ImageBackground>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 16,
-    color: "white"
-  }
-})
