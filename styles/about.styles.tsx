@@ -29,7 +29,7 @@ export const aboutStyles = StyleSheet.create({
         gap: 6
     },
     aboutText: {
-        color: themeColors.lightGreen,
+        color: "white"
 
     },
     featuresBlocks:{
