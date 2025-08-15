@@ -1,4 +1,6 @@
 import { events } from "@/assets/local-data/events";
+import { EventSnippet } from "@/components/EventSnippet";
+import { themeColors } from "@/utils/theme.utils";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
@@ -15,14 +17,31 @@ export default  function EventDatails () {
         const filteredData = events.filter(item => item.id === id)[0];
         setData(filteredData);
     }
-    })
+    },[id]);
+
+    // convert event timestamp to data
+    const convertTimestamp = (stamp) => {
+      const eventDate = new Date(stamp);
+      return String(eventDate);
+    }
+
+    const decidedFee = (free,fee) => {
+      let feeText = ""
+      if (free === true) {
+        feeText = "FREE"
+      }else{
+        feeText = `₦${fee}`
+      }
+
+      return feeText;
+    }
 
     if (data !== undefined){
       return(
       <SafeAreaProvider >
-        <SafeAreaView style={{flex: 1,paddingVertical:16}}>
+        <SafeAreaView style={{flex: 1,paddingVertical:16, display: "flex", justifyContent: "space-between"}}>
           {/* upper group */}
-          <View>
+          <View className="flex gap-y-3"> 
             <View className="flex flex-row justify-center">
               <Image
               source={{uri: data.bannerUrl}}
@@ -32,20 +51,39 @@ export default  function EventDatails () {
             </View>
 
             {/* body area */}
-            <View className="flex flex-row justify-between gap-x-4">
-              <View>
+            <View className="flex justify-between gap-y-2 px-3">
+              <EventSnippet 
+              mainTitle={data.time} 
+              subTitle={data.date}
+              iconName="event-note"/>
 
-              </View>
+              <EventSnippet 
+              mainTitle={data.title} 
+              subTitle={data.createdBy}
+              iconName="event-note"/>
+
+              <EventSnippet 
+              mainTitle={decidedFee(data.free,data.fee)} 
+              subTitle={convertTimestamp(data.createdAt)}
+              iconName="account-balance-wallet"/>
+
+              <EventSnippet 
+              mainTitle={data.venue} 
+              subTitle={data.school}
+              iconName="event-note"/>
+
+              {/* description block */}
               <View>
-                
+                <Text style={{color: themeColors.darkGreen, fontWeight: "bold"}}>Event Description</Text>
+                <Text>{data.desc}</Text>
               </View>
             </View>
           </View>
 
           {/* bottom group */}
-          <View>
-            <TouchableOpacity>
-              <Text>Save event</Text>
+          <View className="px-3">
+            <TouchableOpacity style={{backgroundColor: themeColors.darkGreen}} className="h-16 flex justify-center items-center rounded-full">
+              <Text className="text-3xl text-white">Save event</Text>
             </TouchableOpacity>
           </View>
         </SafeAreaView>
