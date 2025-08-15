@@ -60,7 +60,7 @@ export default  function EventDatails () {
               <EventSnippet 
               mainTitle={data.title} 
               subTitle={data.createdBy}
-              iconName="event-note"/>
+              iconName="group"/>
 
               <EventSnippet 
               mainTitle={decidedFee(data.free,data.fee)} 
@@ -70,7 +70,7 @@ export default  function EventDatails () {
               <EventSnippet 
               mainTitle={data.venue} 
               subTitle={data.school}
-              iconName="event-note"/>
+              iconName="location-city"/>
 
               {/* description block */}
               <View>
