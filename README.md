@@ -15,3 +15,9 @@ main-
 extra-
  1. background image
  2. dark mode
+
+
+ Setting up a styled component
+https://styled-components.com/docs/basics#react-native
+
+React Native Firebase
